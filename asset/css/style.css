@@ -687,3 +687,23 @@ body {
     padding: 5px 0;
     border-bottom: 0.5px solid #ddd;
 }
+/* menu  */
+.pizza-menu-container {
+    background-color: #fff; /* Adjust the background color as needed */
+    padding: 20px;
+    border-radius: 15px; /* Optional: for rounded corners */
+}
+.pizza-image {
+    width: 100%;
+    border-radius: 50%;
+}
+.order-button {
+    background-color: #FFA500; /* Orange background color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding inside the button */
+    border-radius: 20px; /* Rounded corners for the button */
+    font-size: 16px; /* Larger font size */
+    font-weight: bold; /* Bold font weight */
+    margin-top: 20px; /* Margin top for spacing */
+}
