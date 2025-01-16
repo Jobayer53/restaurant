@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gino’s Supreme</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .main-image-container {
+            position: relative;
+            text-align: center;
+        }
+        .main-image-container img {
+            max-width: 100%;
+            height: auto;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .arrow-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .arrow-button.left {
+            left: 10px;
+        }
+        .arrow-button.right {
+            right: 10px;
+        }
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .thumbnail-container img {
+            width: 80px;
+            height: auto;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease-in-out;
+        }
+        .thumbnail-container img.active {
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pizza</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Gino’s Supreme</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="main-image-container">
+                    <img id="mainImage" src="asset/image/product-details-one.avif" alt="Main Image">
+                    <button class="arrow-button left" onclick="prevImage()">&#10094;</button>
+                    <button class="arrow-button right" onclick="nextImage()">&#10095;</button>
+                </div>
+
+                <div class="thumbnail-container">
+                    <img src="asset/image/product-details-one.avif" alt="Thumb 1" data-index="0" onclick="changeMainImage(this)" class="active">
+                    <img src="asset/image/product-details-two.avif" alt="Thumb 2" data-index="1" onclick="changeMainImage(this)">
+                    <img src="asset/image/product-details-threeavif.avif" alt="Thumb 3" data-index="2" onclick="changeMainImage(this)">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h1>GINO’S SUPREME</h1>
+                <p>⭐⭐⭐⭐ (1 customer review)</p>
+                <p>Pepperoni, Italian sausage, onions, green peppers, mushrooms, basil, parmesan</p>
+                <h3>$21.00</h3>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 100px;">
+                </div>
+                <button class="btn btn-primary">ADD TO CART</button>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h4>Category: <a href="#">Pizza</a></h4>
+            <h4>Tags:</h4>
+            <div class="d-flex flex-wrap">
+                <span class="badge bg-secondary m-1">Deep Dish</span>
+                <span class="badge bg-secondary m-1">Parmesan</span>
+                <span class="badge bg-secondary m-1">Pizza</span>
+                <span class="badge bg-secondary m-1">Sausage</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function changeMainImage(thumbnail) {
+            const index = parseInt(thumbnail.getAttribute('data-index'));
+            currentIndex = index;
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = thumbnail.src;
+            updateThumbnails();
+        }
+
+        function prevImage() {
+            const thumbnails = document.querySelectorAll('.thumbnail-container img');
+            currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = thumbnails[currentIndex].src;
+            updateThumbnails();
+        }
+
+        function nextImage() {
+            const thumbnails = document.querySelectorAll('.thumbnail-container img');
+            currentIndex = (currentIndex + 1) % thumbnails.length;
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = thumbnails[currentIndex].src;
+            updateThumbnails();
+        }
+
+        function updateThumbnails() {
+            const thumbnails = document.querySelectorAll('.thumbnail-container img');
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentIndex);
+            });
+        }
+    </script>
+</body>
+</html>

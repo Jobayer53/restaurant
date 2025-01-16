@@ -509,7 +509,7 @@ body {
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-    color: white;
+    color: #f9a825;
 }
 .gallery-container {
     max-width: 800px;
@@ -708,13 +708,57 @@ body {
     margin-top: 20px; /* Margin top for spacing */
 }
 /* product */
-.product-tag {
+ .product-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+/* product detials  */
+.main-image-container {
+    position: relative;
+    text-align: center;
+}
+.main-image-container img {
+    max-width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease-in-out;
+}
+.arrow-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: red;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 5px 10px;
-    font-size: 12px;
-    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 100;
+}
+.arrow-button.left {
+    left: 10px;
+}
+.arrow-button.right {
+    right: 10px;
+}
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.thumbnail-container img {
+    width: 80px;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+.thumbnail-container img.active {
+    border-color: #007bff;
 }
